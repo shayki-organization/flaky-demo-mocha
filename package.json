@@ -1,0 +1,10 @@
+{
+  "name": "flaky-demo-mocha",
+  "private": true,
+  "scripts": {
+    "test": "mocha test/*.test.js"
+  },
+  "devDependencies": {
+    "mocha": "^10.7.0"
+  }
+}
