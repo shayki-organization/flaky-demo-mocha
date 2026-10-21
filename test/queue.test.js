@@ -29,6 +29,13 @@ describe('queue flaky', () => {
     assert.strictEqual(size(q), 3);
   });
 
+  it('flaky: fails on first attempt only', function () {
+    if (process.env.GITHUB_RUN_ATTEMPT === '1') {
+      throw new Error('flaky: simulated first-attempt failure (GITHUB_RUN_ATTEMPT=1)');
+    }
+    assert.strictEqual(size(['a', 'b']), 2);
+  });
+
   it('flaky: preserves order under contention', function () {
     if (Math.random() < 0.4) {
       throw new Error('flaky: simulated out-of-order delivery');
